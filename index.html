@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+    	Guess the Number
+    </title>
+    
+	<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<div class="w-full h-full flex justify-center items-center flex-col">
+  <p class="mt-2 mb-4 font-poppins text-3xl font-semibold">Number Guessing Game</p>
+  <p class="mt-2 mb-4 font-poppins text-xl font-semibold">Guess a Number (Two digit Game) </p>
+  <input class="border-[0.02rem] border-slate-400 rounded-lg mt-5 p-2 pl-4" placeholder="Enter the number : " type="num" id="input_num" onkeyup="myFunction()">
+  <p class="mt-4" id="demo2"></p>
+</div>
+
+
+<script>
+let num = Math.floor(Math.random() * 100);
+let demo2 = document.getElementById("demo2")
+let sa = document.getElementById("input_num");
+let counter = 0;
+function myFunction(event) {
+	counter += 1;
+	console.log("Calling the event",sa.value.length)
+	if (sa.value.length>2){
+    	console.log(sa.value.slice(-2))
+    	sa.value = sa.value.slice(-2)
+    }
+    check(sa.value)
+    
+}
+
+const check = (value) => {
+	if (value < num) {
+    	demo2.innerText = "Try Guessing High";
+        sa.focus();
+    }
+    else if (value > num) {
+    	demo2.innerText = "Try Guessing Low";
+        sa.focus()
+   	}
+   	 else {
+     	sa.value = num;
+    	demo2.innerText = "You won in " + counter/2 + " turn";
+    }
+}
+</script>
+
+</body>
+</html>
